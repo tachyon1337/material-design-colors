@@ -1,0 +1,50 @@
+@import "../variables";
+
+/// Blue-Grey map
+/// @access public
+$MD-Blue-Grey: (
+        value:#607D8B,
+        element:$md-white-default,
+        primary:(
+                500:(
+                        value:#607D8B,
+                        element:$md-white-primary
+                ),
+                50:(
+                        value:#ECEFF1,
+                        element:$md-black-primary
+                ),
+                100:(
+                        value:#CFD8DC,
+                        element:$md-black-primary
+                ),
+                200:(
+                        value:#B0BEC5,
+                        element:$md-black-primary
+                ),
+                300:(
+                        value:#90A4AE,
+                        element:$md-black-primary
+                ),
+                400:(
+                        value:#78909C,
+                        element:$md-white-primary
+                ),
+                600:(
+                        value:#546E7A,
+                        element:$md-white-primary
+                ),
+                700:(
+                        value:#455A64,
+                        element:$md-white-primary
+                ),
+                800:(
+                        value:#37474F,
+                        element:$md-white-primary
+                ),
+                900:(
+                        value:#263238,
+                        element:$md-white-primary
+                )
+        )
+);

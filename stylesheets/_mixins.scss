@@ -1,0 +1,155 @@
+@import "maps";
+
+
+/// @access private
+@mixin _md-material-depth(){
+  &.elevation-0 {
+    box-shadow: map-get($MD-Depth,0);
+  }
+  &.elevation-01 {
+    box-shadow: map-get($MD-Depth,'01');
+  }
+  &.elevation-02 {
+    box-shadow: map-get($MD-Depth,'02');
+  }
+  &.elevation-05 {
+    box-shadow: map-get($MD-Depth,'05');
+  }
+  &.elevation-1{
+    box-shadow: map-get($MD-Depth,1);
+  }
+  &.elevation-2{
+    box-shadow: map-get($MD-Depth,2);
+  }
+  &.elevation-3{
+    box-shadow: map-get($MD-Depth,3);
+  }
+  &.elevation-4{
+    box-shadow: map-get($MD-Depth,4);
+  }
+  &.elevation-5{
+    box-shadow: map-get($MD-Depth,5);
+  }
+}
+
+
+/// @access public
+@mixin md-element-color-hierarchy($color,$p-opacity,$s-opacity,$h-opacity,$d-opacity,$important){
+
+  &.secondary{
+    color:rgba($color,$s-opacity) $important;
+  }
+  &.hint,&.disabled{
+    color:rgba($color,$h-opacity) $important;
+  }
+  &.clear,&.divider{
+    color:rgba($color,$d-opacity) $important;
+  }
+}
+
+
+/// @access public
+@mixin md-hue($primary-map,$accent-map,$apply-background,$primary-opacity,$secondary-opacity,$hint-opacity,$divider-opacity,$important){
+  @if $primary-map !=null{
+    @each $p-type,$p-color in $primary-map{
+      &-primary-#{$p-type}{
+        $_p-value-color:map-get($p-color,value);
+        $_p-element-color:map-get($p-color,element);
+        $_rgb-p-element-color:color-rgb($_p-element-color);
+        @if $apply-background==true{
+          background:$_p-value-color;
+          color:$_p-element-color;
+          @include md-element-color-hierarchy($_rgb-p-element-color,$primary-opacity,$secondary-opacity,$hint-opacity,$divider-opacity,$important);
+        }@else{
+          color:$_p-value-color !important;
+          @include md-element-color-hierarchy($_p-value-color,$primary-opacity,$secondary-opacity,$hint-opacity,$divider-opacity,$important);
+        }
+      }
+    }
+  }
+
+  @if $accent-map !=null{
+    @each $a-type,$a-color in $accent-map{
+      &-accent-#{$a-type}{
+        $_a-value-color:map-get($a-color,value);
+        $_a-element-color:map-get($a-color,element);
+        $_rgb-a-element-color:color-rgb($_a-element-color);
+        @if $apply-background==true{
+          background:map-get($a-color,value);
+          color:$_a-element-color;
+          @include md-element-color-hierarchy($_rgb-a-element-color,$primary-opacity,$secondary-opacity,$hint-opacity,$divider-opacity,$important);
+        }@else{
+          color:$_a-value-color !important;
+          @include md-element-color-hierarchy($_a-value-color,$primary-opacity,$secondary-opacity,$hint-opacity,$divider-opacity,$important);
+        }
+      }
+    }
+  }
+}
+
+
+/// @access public
+@mixin md-color($color,$color-map,$opacity-map){
+  $_color:map-get($color-map,value);
+  $_element:map-get($color-map,element);
+  $_rgb_element:color-rgb($_element);
+  $_primary-opacity:map-get($opacity-map,primary);
+  $_secondary-opacity:map-get($opacity-map,secondary);
+  $_hint-opacity:map-get($opacity-map,hint);
+  $_divider-opacity:map-get($opacity-map,divider);
+  $_primary-map:map-get($color-map,primary);
+  $_accent-map:map-get($color-map,accent);
+
+  &.#{$color}-color{
+    color:$_color;
+  }
+
+  &.#{$color}{
+    background:$_color;
+    color:$_element;
+    @include md-element-color-hierarchy($_rgb-element,$_primary-opacity,$_secondary-opacity,$_hint-opacity,$_divider-opacity,null);
+    @include md-hue($_primary-map,$_accent-map,true,$_primary-opacity,$_secondary-opacity,$_hint-opacity,$_divider-opacity,null);
+  }
+
+  &.#{$color}-element{
+    color:$_color;
+    @include md-element-color-hierarchy($_color,$_primary-opacity,$_secondary-opacity,$_hint-opacity,$_divider-opacity,!important);
+    @include md-hue($_primary-map,$_accent-map,false,$_primary-opacity,$_secondary-opacity,$_hint-opacity,$_divider-opacity,!important);
+  }
+
+}
+
+/// @access private
+@mixin _md-color-classes(){
+  @each $color,$color-map in $MD-Color{
+    @if $color==black{
+      @include md-color($color,$color-map,$MD-Light-Dark-Opacity);
+    }@else{
+      @include md-color($color,$color-map,$MD-Opacity);
+    }
+  }
+}
+
+
+/// @access public
+@mixin md-color-classes(){
+  .md{
+    @include _md-color-classes();
+
+  }
+}
+
+
+/// @access public
+@mixin md-custom-color-classes($color,$map){
+  .md{
+    @include md-color($color,$map,$MD-Opacity);
+  }
+}
+
+/// @access public
+@mixin md-material-depth(){
+  .md{
+    @include _md-material-depth();
+  }
+}

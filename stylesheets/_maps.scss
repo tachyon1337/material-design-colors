@@ -1,0 +1,63 @@
+@import "colors";
+
+/// MD Color map
+/// @access public
+$MD-Color:(
+        amber:$MD-Amber,
+        black:$MD-Black,
+        blue:$MD-Blue,
+        blue-grey:$MD-Blue-Grey,
+        brown:$MD-Brown,
+        cyan:$MD-Cyan,
+        deep-orange:$MD-Deep-Orange,
+        deep-purple:$MD-Deep-Purple,
+        green:$MD-Green,
+        grey:$MD-Grey,
+        indigo:$MD-Indigo,
+        light-blue:$MD-Light-Blue,
+        light-green:$MD-Light-Green,
+        lime:$MD-Lime,
+        orange:$MD-Orange,
+        pink:$MD-Pink,
+        purple:$MD-Purple,
+        red:$MD-Red,
+        teal:$MD-Teal,
+        white:$MD-White,
+        yellow:$MD-Yellow
+);
+
+/// MD Opacity map
+/// @access public
+$MD-Opacity:(
+        primary:$md-primary-opacity,
+        secondary:$md-secondary-opacity,
+        hint:$md-hint-opacity,
+        disabled:$md-disabled-opacity,
+        divider:$md-divider-opacity,
+        clear:$md-clear-opacity
+);
+
+/// MD Light Dark Opacity map
+/// @access public
+$MD-Light-Dark-Opacity:(
+        primary:$md-light-dark-primary-opacity,
+        secondary:$md-light-dark-secondary-opacity,
+        hint:$md-light-dark-hint-opacity,
+        disabled:$md-light-dark-disabled-opacity,
+        divider:$md-light-dark-divider-opacity,
+        clear:$md-light-dark-clear-opacity
+);
+
+/// MD Depth map
+/// @access public
+$MD-Depth:(
+        0:$md-depth-0,
+        '01':$md-depth-01,
+        '02':$md-depth-02,
+        '05':$md-depth-05,
+        1:$md-depth-1,
+        2:$md-depth-2,
+        3:$md-depth-3,
+        4:$md-depth-4,
+        5:$md-depth-5
+);
